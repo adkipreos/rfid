@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <header class="navbar navbar-fixed-top navbar-inverse">
+      <div class="container">
+        <nav>
+          <ul class="nav navbar-nav navbar-right">
+            <li><%= link_to "Users",   new_path %></li>
+            <li><%= link_to "New",   signup_path %></li>
+            <li><%= link_to "Profile",   '#' %></li>
+            <li><%= link_to "Log Out", logout_path, method: "delete"  %></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+  </body>
+</html>

@@ -1,5 +1,15 @@
 Rails.application.routes.draw do
+
   root 'rfid#home'
+  get    'new'  => 'users#new'
+  get    'signup'  => 'users#signup' 
+  get    'login'   => 'rfid#home'
+  post   'login'   => 'rfid#login'
+  delete 'logout'  => 'rfid#destroy'
+
+
+  resources :users
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
