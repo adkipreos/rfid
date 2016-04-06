@@ -1,0 +1,33 @@
+<% provide(:title, 'Update') %>
+    <header class="navbar navbar-fixed-top navbar-inverse">
+      <div class="container">
+        <nav>
+          <ul class="nav navbar-nav navbar-right">
+            <li><%= link_to "Users",   new_path %></li>
+            <li><%= link_to "New",   signup_path %></li>
+            <li><%= link_to "Profile",   '#' %></li>
+            <li><%= link_to "Log Out", logout_path, method: "delete"  %></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+<h1>Update your profile</h1>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_for(@admin) do |f| %>
+
+      <%= f.label :name %>
+      <%= f.text_field :name %>
+
+      <%= f.label :password %>
+      <%= f.password_field :password %>
+
+      <%= f.label :password_confirmation, "Confirmation" %>
+      <%= f.password_field :password_confirmation %>
+
+      <%= f.submit "Save changes", class: "btn btn-primary" %>
+    <% end %>
+
+  </div>
+</div>

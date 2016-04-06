@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   def new
+    @users = User.all
   end
   def signup
     @user = User.new
@@ -11,13 +12,17 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       flash[:success] = "User created!"
-      redirect_to @user
+      redirect_to new_path
 
     else
-      redirect_to signup_path
+      redirect_to root_url
     end
   end
-
+  def destroy
+    User.find(params[:id]).destroy
+    flash[:success] = "User deleted"
+    redirect_to new_path
+  end
   private
 
     def user_params

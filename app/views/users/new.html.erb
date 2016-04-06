@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<% provide(:title, 'All users') %>
 <html>
   <body>
     <header class="navbar navbar-fixed-top navbar-inverse">
@@ -7,11 +8,23 @@
           <ul class="nav navbar-nav navbar-right">
             <li><%= link_to "Users",   new_path %></li>
             <li><%= link_to "New",   signup_path %></li>
-            <li><%= link_to "Profile",   '#' %></li>
+            <li><%= link_to "Profile",   update_path %></li>
             <li><%= link_to "Log Out", logout_path, method: "delete"  %></li>
           </ul>
         </nav>
       </div>
     </header>
+<h1>All users</h1>
+
+<ul class="users">
+  <% @users.each do |user| %>
+    <li>
+      <%= link_to user.name+" "+user.lastname, user %>
+    |  <%= link_to "delete", user, method: :delete, data: { confirm: "You sure?" } %>
+    </li>
+  <% end %>
+</ul>
+
+
   </body>
 </html>

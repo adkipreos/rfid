@@ -4,7 +4,8 @@ Rails.application.routes.draw do
   get    'new'  => 'users#new'
   get    'signup'  => 'users#signup' 
   get    'login'   => 'rfid#home'
-  post   'login'   => 'rfid#login'
+  get    'update'  => 'rfid#edit'
+  post   'login'   => 'rfid#create'
   delete 'logout'  => 'rfid#destroy'
 
 

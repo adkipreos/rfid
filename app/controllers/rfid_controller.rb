@@ -17,5 +17,24 @@ class RfidController < ApplicationController
     log_out
     redirect_to root_url
   end
+  def edit
+    @admin = Admin.first
+  end
+  def update
+    @admin = Admin.first
+    if @admin.update_attributes(admin_params)
+      flash[:success] = "Profile updated"
+      redirect_to update_path
+    else
+      flash.now[:danger] = 'Invalid username/password combination'
+      redirect_to update_path
+    end
+  end
+
+  private
+
+    def admin_params
+      params.require(:admin).permit(:name, :password, :password_confirmation)
+    end
 
 end

@@ -1,8 +1,29 @@
-<% provide(:title, "Users") %>
-    <h1>Users</h1>
-    <h2>
-        ID | Name | Lastname | RFID
-    </h2>
+<% provide(:title, 'User') %>
+<html>
+  <body>
+    <header class="navbar navbar-fixed-top navbar-inverse">
+      <div class="container">
+        <nav>
+          <ul class="nav navbar-nav navbar-right">
+            <li><%= link_to "Users",   new_path %></li>
+            <li><%= link_to "New",   signup_path %></li>
+            <li><%= link_to "Profile",   update_path %></li>
+            <li><%= link_to "Log Out", logout_path, method: "delete"  %></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <h1>User</h1>
+      <div class="container">
+        <nav>
+          <ul class="users">
+            <li>ID: <%= @user.id %></li>
+            <li>Name: <%= @user.name %></li>
+            <li>Last Name: <%= @user.lastname %></li>
+            <li>RFID: <%= @user.rfid %></li>
+          </ul>
+         </nav> 
+      </div>
 
 
-<%= @user.id %>: <%= @user.name %>, <%= @user.lastname %>, <%= @user.rfid %>
