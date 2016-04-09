@@ -18,11 +18,11 @@ class RfidController < ApplicationController
     redirect_to root_url
   end
   def edit
-    @admin = Admin.first
+    @user = Admin.find(params[:id])
   end
   def update
-    @admin = Admin.first
-    if @admin.update_attributes(admin_params)
+    @user = Admin.find(params[:id])
+    if @user.update_attributes(admin_params)
       flash[:success] = "Profile updated"
       redirect_to update_path
     else

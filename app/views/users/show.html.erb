@@ -7,7 +7,7 @@
           <ul class="nav navbar-nav navbar-right">
             <li><%= link_to "Users",   new_path %></li>
             <li><%= link_to "New",   signup_path %></li>
-            <li><%= link_to "Profile",   update_path %></li>
+            <li><%= link_to "Settings",   update_path(current_user) %></li>
             <li><%= link_to "Log Out", logout_path, method: "delete"  %></li>
           </ul>
         </nav>
