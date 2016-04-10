@@ -24,10 +24,10 @@ class AdminsController < ApplicationController
         @user = Admin.find(params[:id])
         if @user.update_attributes(admin_params)
           flash[:success] = "Profile updated"
-          redirect_to update_path
+          redirect_to new_path
         else
-            flash.now[:danger] = 'Invalid username/password combination'
-            redirect_to update_path
+          flash[:danger] = 'Invalid username/password combination'
+          redirect_to update_path
         end
     end
 

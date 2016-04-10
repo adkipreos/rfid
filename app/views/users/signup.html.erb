@@ -12,10 +12,39 @@
       <%= f.text_field :lastname %>
 
       <%= f.label :rfid %>
-      <%= f.text_field :rfid %>
+      <%= f.text_field :rfid ,:disabled=>true %>
 
+      <button type="button" class="btn btn-success btn-block" id="sb">Read RFID</button>
 
+      
       <%= f.submit "Create user", class: "btn btn-primary" %>
     <% end %>
   </div>
 </div>
+
+<script src="jquery.js"></script>
+<script>
+   $(document).ready(function(){                     
+      $(function(){
+         $("#sb").click(function(e){
+             $.ajax({
+              url: "~/Desktop/file.txt",
+              data: "data",  // with this, you can force the browser to not make cache of the retrieved data
+              dataType: "text",  // jQuery will infer this, but you can set explicitly
+              success: function( data, textStatus, jqXHR ) {
+                var resourceContent = data; // can be a global variable too...
+                $('#rfid').val(resourceContent);
+              }
+            });
+
+
+
+           <!-- jQuery.get('~/Desktop/file.txt', function(data) {
+            alert(data);
+            //process text file line by line
+            $('#rfid').val(resourceContent);
+          });-->
+        });
+      });
+    });
+</script>

@@ -21,20 +21,9 @@ class RfidController < ApplicationController
     @user = Admin.find(params[:id])
   end
   def update
-    @user = Admin.find(params[:id])
-    if @user.update_attributes(admin_params)
-      flash[:success] = "Profile updated"
-      redirect_to update_path
-    else
-      flash.now[:danger] = 'Invalid username/password combination'
-      redirect_to update_path
-    end
+    
   end
 
-  private
 
-    def admin_params
-      params.require(:admin).permit(:name, :password, :password_confirmation)
-    end
 
 end
