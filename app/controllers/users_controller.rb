@@ -15,7 +15,8 @@ class UsersController < ApplicationController
       redirect_to new_path
 
     else
-      redirect_to root_url
+      flash[:danger] = "Cannot create User!"
+      redirect_to new_url
     end
   end
   def destroy

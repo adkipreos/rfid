@@ -12,7 +12,7 @@
       <%= f.text_field :lastname %>
 
       <%= f.label :rfid %>
-      <%= f.text_field :rfid ,:disabled=>true %>
+      <%= f.text_field :rfid %>
 
       <button type="button" class="btn btn-success btn-block" id="sb">Read RFID</button>
 
@@ -22,28 +22,50 @@
   </div>
 </div>
 
-<script src="jquery.js"></script>
 <script>
    $(document).ready(function(){                     
       $(function(){
          $("#sb").click(function(e){
+            $("#sb").prop('disabled', true);
              $.ajax({
-              url: "~/Desktop/file.txt",
+              url: "/readcard",
+              dataType: "json",
               data: "data",  // with this, you can force the browser to not make cache of the retrieved data
               dataType: "text",  // jQuery will infer this, but you can set explicitly
               success: function( data, textStatus, jqXHR ) {
-                var resourceContent = data; // can be a global variable too...
-                $('#rfid').val(resourceContent);
+                var resourceContent = $.parseJSON(data)['card']; // can be a global variable too...
+                var x = 0;
+                $('#user_rfid').val(resourceContent);
+                if (resourceContent == null){
+                  var intervalID = setInterval(function () {
+                    $.ajax({
+                      url: "/readcard",
+                      dataType: "json",
+                      data: "data",  // with this, you can force the browser to not make cache of the retrieved data
+                      dataType: "text",  // jQuery will infer this, but you can set explicitly
+                      success: function( data, textStatus, jqXHR ) {
+                        resourceContent = $.parseJSON(data)['card'];
+                      }
+                    });
+                    if (resourceContent != null){
+                      $('#user_rfid').val(resourceContent);
+                      $("#sb").prop('disabled', false);
+                      window.clearInterval(intervalID);
+                    }
+                    if (++x === 60) {
+                      window.clearInterval(intervalID);
+                      $("#sb").prop('disabled', false);
+                  }
+                  }, 1000);
+                }
+                else {
+                  $("#sb").prop('disabled', false);
+                }
               }
             });
 
 
-
-           <!-- jQuery.get('~/Desktop/file.txt', function(data) {
-            alert(data);
-            //process text file line by line
-            $('#rfid').val(resourceContent);
-          });-->
+           
         });
       });
     });

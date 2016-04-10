@@ -24,6 +24,16 @@ class RfidController < ApplicationController
     
   end
 
+  def read_card_file
+    card = File.read("tmp/file.txt")
+    tarjeta = User.find_by_rfid(card)
+    if !!tarjeta
+      render json: {"card" => nil}
+    else  
+      render json: {"card" => card}
+    end
+  end
+
 
 
 end

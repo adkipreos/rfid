@@ -2,11 +2,12 @@ Rails.application.routes.draw do
 
   root 'rfid#home'
   get    'new'  => 'users#new'
-  get    'signup'  => 'users#signup' 
+  get    'signup'  => 'users#signup'
   get    'login'   => 'rfid#home'
   get    'update/:id'  => 'rfid#edit', as: 'update'
   post   'login'   => 'rfid#create'
   delete 'logout'  => 'rfid#destroy'
+  get 'readcard' => 'rfid#read_card_file'
 
 
   resources :users
