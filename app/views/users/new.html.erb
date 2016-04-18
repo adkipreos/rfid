@@ -19,8 +19,10 @@
 <ul class="users">
   <% @users.each do |user| %>
     <li>
-      <%= link_to user.name+" "+user.lastname, user %>
+      <%= link_to user.id.to_s+". "+user.name+" "+user.lastname, user %>
+    |  <%= link_to "edit", edit_path(user) %>
     |  <%= link_to "delete", user, method: :delete, data: { confirm: "You sure?" } %>
+    |  <%=" Bloqueado: "+user.block.to_s%>
     </li>
   <% end %>
 </ul>

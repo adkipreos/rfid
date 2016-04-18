@@ -14,7 +14,15 @@
       <%= f.label :rfid %>
       <%= f.text_field :rfid %>
 
-      <button type="button" class="btn btn-success btn-block" id="sb">Read RFID</button>
+      <div class="field">
+        <%= f.label :block %><br />
+        <%= f.label :block, "Yes", :value => "true"  %>
+        <%= f.radio_button :block, true %>
+        <%= f.label :block, "No", :value => "false" %>
+        <%= f.radio_button :block, false, :checked => true %>
+      </div>
+
+      <button type="button" class="btn btn-success btn-block" id="sb">Read RFID</button><br />
 
       
       <%= f.submit "Create user", class: "btn btn-primary" %>

@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   get    'signup'  => 'users#signup'
   get    'login'   => 'rfid#home'
   get    'update/:id'  => 'rfid#edit', as: 'update'
+  get    'edit/:id'  => 'users#edit', as: 'edit'
   post   'login'   => 'rfid#create'
   delete 'logout'  => 'rfid#destroy'
   get 'readcard' => 'rfid#read_card_file'

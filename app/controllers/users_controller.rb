@@ -19,6 +19,21 @@ class UsersController < ApplicationController
       redirect_to new_url
     end
   end
+  def edit
+      @user = User.find(params[:id])
+  end
+
+  def update
+    @user = User.find(params[:id])
+    if @user.update_attributes(user_params)
+        flash[:success] = "User updated"
+        redirect_to new_path
+    else
+        flash[:danger] = 'Invalid name/lastname'
+        redirect_to update_path
+    end
+  end
+
   def destroy
     User.find(params[:id]).destroy
     flash[:success] = "User deleted"
@@ -27,6 +42,6 @@ class UsersController < ApplicationController
   private
 
     def user_params
-      params.require(:user).permit(:name, :lastname, :rfid)
+      params.require(:user).permit(:name, :lastname, :rfid, :block)
     end
 end
