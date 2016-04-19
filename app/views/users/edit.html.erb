@@ -25,10 +25,12 @@
 
       <div class="field">
         <%= f.label :block %><br />
-        <%= f.label :block, "Yes", :value => "true"  %>
-        <%= f.radio_button :block, true %>
-        <%= f.label :block, "No", :value => "false" %>
-        <%= f.radio_button :block, false, :checked => true %>
+        <label id='block' value='true'>
+          <%= f.radio_button :block, true %>Yes
+        </label>
+        <label id='block' value='false'>
+          <%= f.radio_button :block, false, :checked => true %>No
+        </label>
       </div>
 
       <%= f.submit "Save changes", class: "btn btn-primary" %>
